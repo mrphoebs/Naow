@@ -91,6 +91,7 @@ $(document).ready(function(){
 
 	$('.listdelete').click(function(){ //delete a todolist
 		$(this).parent().parent().remove();
+		keynavreset(keynavobj);
 	});
 
 	function todoedit(){
