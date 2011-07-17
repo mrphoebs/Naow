@@ -1,0 +1,44 @@
+.shadow {
+		-moz-box-shadow: 5px 5px 5px #000;
+		-webkit-box-shadow: 5px 5px 5px #000;
+		box-shadow: 5px 5px 5px #000;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+	}
+
+.tbshadow{
+		-moz-box-shadow: 0px 0px 10px #ccc;
+		-webkit-box-shadow: 0px 0px 10px #ccc;
+		box-shadow: 0px 0px 10px #ccc;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.round {
+     -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.tbround{
+     -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.topround{
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	-webkit-border-radius-topleft: 10px;
+	-webkit-border-radius-topright: 10px;
+	-khtml-border-radius-topleft: 10px;
+	-khtml-border-radius-topright: 10px;
+	border-radius-topleft: 10px;
+	border-radius-topright: 10px;	
+}
