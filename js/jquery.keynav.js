@@ -46,9 +46,10 @@
 		  kn.init = true;
 	  }
 
-	  return this.each(function() {
+	  this.each(function() {
 		$.keynav.reg(this,onClass,offClass);
 	  });
+	  return kn;
   }
   $.fn.keynav_sethover = function(onClass,offClass) {
 	  return this.each(function() {

@@ -18,6 +18,16 @@
 		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
+.modalshadow{
+		-moz-box-shadow: 0px 0px 20px #000;
+		-webkit-box-shadow: 0px 0px 20px #000;
+		box-shadow: 0px 0px 20px #000;
+		/* For IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+		/* For IE 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
 .round {
      -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
