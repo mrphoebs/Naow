@@ -89,6 +89,7 @@ $(document).ready(function(){
 		if( event.keyCode == '13' && $('#context').attr('value').length > 0 )
 		{
 			event.preventDefault();
+			event.stopPropagation();
 			var todolistName = $('#context').attr('value');
 			var created = newtodoList( todolistName );
 			if(created)
@@ -96,7 +97,6 @@ $(document).ready(function(){
 				$('#overlay').remove();
 				$('#modal').remove();
 			}
-			event.stopPropagation();
 
 		}
 		else if(event.keyCode == '27')
