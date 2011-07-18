@@ -10,6 +10,10 @@ $(document).ready(function(){
 
 	$('ul li:first').removeClass('withoutfocus').addClass('withfocus');
 
+	$('article').sortable(); /* Makes todolists sortable*/
+	$('article').disableSelection();
+
+
 	$('li').live('click',function(e){
 		e.preventDefault();
 		if( $('.todoedit').length == 0 ){
@@ -92,6 +96,7 @@ $(document).ready(function(){
 				$('#overlay').remove();
 				$('#modal').remove();
 			}
+			event.stopPropagation();
 
 		}
 		else if(event.keyCode == '27')
