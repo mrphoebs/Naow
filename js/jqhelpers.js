@@ -3,6 +3,7 @@ $(document).ready(function(){
 	if(statePresent())
 	{
 		getState();
+		$('.withfocus').removeClass('withfocus').addClass('withoutfocus');
 	}
 
 	var keynavobj = $('ul li').keynav('withfocus','withoutfocus');
