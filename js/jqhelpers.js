@@ -1,8 +1,30 @@
 $(document).ready(function(){
-	
+
+	if(statePresent())
+	{
+		getState();
+	}
+
 	var keynavobj = $('ul li').keynav('withfocus','withoutfocus');
 
 	$('ul li:first').removeClass('withoutfocus').addClass('withfocus');
+
+	$('li').live('click',function(e){
+		e.preventDefault();
+		if( $('.todoedit').length == 0 ){
+			todoedit();
+			$('ul li').keynav('withfocus','withoutfocus'); /*enables focus going onto other elements once element has been edited*/
+		}
+	});
+
+	$('.todocontrols').live('click',function(e){
+		e.preventDefault();
+		if( $('.todoedit').length == 0 ){
+			tododel();
+		}
+		e.stopPropagation();
+	});
+
 
 	$(document).keydown(function(event){
 	if( $("#modal").length == 0) { //If modal is not active
@@ -52,8 +74,8 @@ $(document).ready(function(){
 		else if( (event.keyCode =='78') && $('.todoedit').length == 0)
 		{
 			event.preventDefault();		
-			$('<div id="overlay" class="overlay"></div>').insertBefore("section:first");
-			$('<div id="modal" class="modal round modalshadow span-24"><h2 class="topround">Todo List</h2><div><input id="context" class="tbround span-8" type="text"></input></div></div></div>').insertBefore("section:first");			     $('#context').focus();
+			$('article').append('<div id="overlay" class="overlay"></div>');
+			$('article').append('<div id="modal" class="modal round modalshadow span-24"><h2 class="topround">Todo List</h2><div><input id="context" class="tbround span-8" type="text"></input></div></div></div>');			     $('#context').focus();
 			//launches modal with id context
 		} 
 	}
@@ -89,8 +111,9 @@ $(document).ready(function(){
 			}
 	});
 
-	$('.listdelete').click(function(){ //delete a todolist
+	$('.listdelete').live('click',function(){ //delete a todolist using live because click doesn't work for newly added dom elements
 		$(this).parent().parent().remove();
+		saveState();
 		keynavreset(keynavobj);
 	});
 
@@ -103,12 +126,14 @@ $(document).ready(function(){
 	function todosave(){
 		var text = $(".withfocus > .todocontent > input").attr('value');
 		$(".withfocus > .todocontent").html(text);
+		saveState();
 	}
 
 	function tododel(){
 		if( $(".withfocus").parent().children().length > 1)
 		{
 			var ele = $(".withfocus").hide('fast').remove();
+			saveState();
 			keynavreset(keynavobj);
 			/*alert(keynavobj.el.length);*/
 			
@@ -116,6 +141,7 @@ $(document).ready(function(){
 		else
 		{
 			$(".withfocus > .todocontent").html("");
+			saveState();
 		}
 	}
 
@@ -123,14 +149,14 @@ $(document).ready(function(){
 	
 		//if the todolist does not exist create new one and return true
 		
-		var str = '<section class="round shadow span-24"><div class="subheader topround"><h2 class="listheading">context</h2><h2 class="listdelete">x</h2></div><ul class="todos"><li class="todo round withoutfocus"><div class="todocontent span-20"></div><div class="todocontrols span-1 last"></div></li></ul></section>';
-		$(str).insertAfter('section:last');
+		var str = '<section class="round shadow span-24"><div class="subheader topround"><h2 class="listheading">'+name+'</h2><h2 class="listdelete">x</h2></div><ul class="todos"><li class="todo round withoutfocus"><div class="todocontent span-20"></div><div class="todocontrols span-1 last"></div></li></ul></section>';
+		$('article').append(str);
 		keynavreset(keynavobj);
+		saveState();
 /*		$('ul li').keynav('withfocus','withoutfocus');
 		$('ul li:first').removeClass('withoutfocus').addClass('withfocus'); */
 
 		//else throw dialog error and return false	
-		alert(name);
 		return true; //return true if a duplicated todolist does not exist
 	}
 
@@ -138,5 +164,27 @@ $(document).ready(function(){
 	{
 		keynobj.reset(); //resets keynav elements
                 $("ul li").each(function(){keynobj.reg(this,"withfocus","withoutfocus")});
+	}
+
+	function saveState()
+	{
+		localStorage['naow'] = $('article').html();
+	}
+	
+	function statePresent()
+	{
+		if(localStorage['naow'])
+		{
+			return true;
+		}
+		else
+		{	
+			return false;
+		}	
+	}
+	
+	function getState()
+	{
+		$('article').append(localStorage['naow']);
 	}
 });
