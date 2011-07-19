@@ -5,7 +5,9 @@ Naow is a simple one page HTML5 todolist manager that uses Html 5 localstorage. 
 ###Installation and Browsers
 
 **Firefox:** firefox doesn't support(yet) localStorage retention between page visits for domains starting with **file:///** So to use with firefox, host it as a static file on a http server.
+
 **Chrome:** you can launch naow from the local filesystem on chrome or use it from a http server of your choice.
+
 **IE:** Fuck IE
 
 ###Keyboard shortcuts
