@@ -63,6 +63,22 @@
 	  kn.el = new Array();
   }
 
+  $.keynav.regnew = function(e,onClass,offClass,mouseState) {
+	  var kn = $.keynav;
+	  e.pos = $.keynav.getPos(e);
+	  e.onClass = onClass;
+	  e.offClass = offClass;
+	  if(mouseState)
+	  {
+	  	e.onmouseover = function (e) { $.keynav.setActive(this); };
+	  }
+	  else
+	  {
+		e.onmouseover = function () {};
+	  }
+	  kn.el.push(e);
+  }
+
   $.keynav.reg = function(e,onClass,offClass) {
 	  var kn = $.keynav;
 	  e.pos = $.keynav.getPos(e);
@@ -71,6 +87,7 @@
 	  e.onmouseover = function (e) { $.keynav.setActive(this); };
 	  kn.el.push(e);
   }
+
   $.keynav.setActive = function(e) {
 	  var kn = $.keynav;
 	  var cur = $.keynav.getCurrent();

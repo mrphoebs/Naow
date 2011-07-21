@@ -18,9 +18,18 @@ $(document).ready(function(){
 		e.preventDefault();
 		if( $('.todoedit').length == 0 ){
 			todoedit();
-			$('ul li').keynav('withfocus','withoutfocus'); /*enables focus going onto other elements once element has been edited*/
+			keynavreset(keynavobj,false);
 		}
 	});
+
+	$('li').live('dblclick',function(e){
+		e.preventDefault();
+		if( $('.todoedit').length == 0 ){
+			todoedit();
+			keynavreset(keynavobj,false);
+		}
+	});
+
 
 	$('.todocontrols').live('click',function(e){
 		e.preventDefault();
@@ -37,11 +46,13 @@ $(document).ready(function(){
 		{
 			event.preventDefault();
 			todoedit();
+			keynavreset(keynavobj,false);
 		}
 		else if(event.keyCode == '13' && $('.todoedit').length != 0 )
 		{
 			event.preventDefault();
 			todosave();
+			keynavreset(keynavobj,true);
 			$('ul li').keynav('withfocus','withoutfocus'); /*enables focus going onto other elements once element has been edited*/
 
 		}
@@ -60,6 +71,7 @@ $(document).ready(function(){
 		{	
 			event.preventDefault();
 			todosave();
+			keynavreset(keynavobj,true);
 			$('ul li').keynav('withfocus','withoutfocus'); /*enables focus going onto other elements once element has been edited*/
 		}
 		else if( (event.keyCode == '45' || event.keyCode=='73') && $('.todoedit').length == 0 )//if insert or i are pressed new todoelement will be created
@@ -67,6 +79,7 @@ $(document).ready(function(){
 			//insert new todoelement in the necessary ul
 				event.preventDefault();
 				todoedit();
+				keynavreset(keynavobj,false);
 		}
 		else if( event.keyCode == '67' && $('.todoedit').length == 0 )
 		{
@@ -74,6 +87,7 @@ $(document).ready(function(){
 				var parentList = $('.withfocus').parent();
 				$('.withfocus').removeClass('withfocus').clone().addClass('withfocus').insertBefore(parentList.children().first()).children().first().html("");
 				todoedit();
+				keynavreset(keynavobj,false);
 		}
 		
 		else if( (event.keyCode =='78') && $('.todoedit').length == 0)
@@ -120,7 +134,7 @@ $(document).ready(function(){
 	$('.listdelete').live('click',function(){ //delete a todolist using live because click doesn't work for newly added dom elements
 		$(this).parent().parent().remove();
 		saveState();
-		keynavreset(keynavobj);
+		keynavreset(keynavobj,true);
 	});
 
 	function todoedit(){
@@ -140,7 +154,7 @@ $(document).ready(function(){
 		{
 			var ele = $(".withfocus").hide('fast').remove();
 			saveState();
-			keynavreset(keynavobj);
+			keynavreset(keynavobj,true);
 			/*alert(keynavobj.el.length);*/
 			
 		}
@@ -157,7 +171,7 @@ $(document).ready(function(){
 		
 		var str = '<section class="round shadow span-24"><div class="subheader topround"><h2 class="listheading">'+name+'</h2><h2 class="listdelete">x</h2></div><ul class="todos"><li class="todo round withoutfocus"><div class="todocontent span-20"></div><div class="todocontrols span-1 last"></div></li></ul></section>';
 		$('article').append(str);
-		keynavreset(keynavobj);
+		keynavreset(keynavobj,true);
 		saveState();
 /*		$('ul li').keynav('withfocus','withoutfocus');
 		$('ul li:first').removeClass('withoutfocus').addClass('withfocus'); */
@@ -166,10 +180,10 @@ $(document).ready(function(){
 		return true; //return true if a duplicated todolist does not exist
 	}
 
-	function keynavreset(keynobj)
+	function keynavreset(keynobj,mouseState)
 	{
 		keynobj.reset(); //resets keynav elements
-                $("ul li").each(function(){keynobj.reg(this,"withfocus","withoutfocus")});
+                $("ul li").each(function(){keynobj.regnew(this,"withfocus","withoutfocus",mouseState)});
 	}
 
 	function saveState()
