@@ -56,7 +56,7 @@ $(document).ready(function(){
 			$('ul li').keynav('withfocus','withoutfocus'); /*enables focus going onto other elements once element has been edited*/
 
 		}
-		else if( event.keyCode == '46'  )
+		else if( event.keyCode == '46' && $('.todoedit').length == 0)
 		{
 			event.preventDefault();
 			tododel();
