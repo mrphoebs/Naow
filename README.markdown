@@ -8,7 +8,7 @@ Naow is a simple one page HTML5 todolist manager that uses Html 5 localstorage. 
 
 **Chrome:** you can launch naow from the local filesystem on chrome or use it from a http server of your choice.
 
-**IE:** Fuck IE
+**IE:** lol :)
 
 ###Keyboard shortcuts
 
