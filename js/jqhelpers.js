@@ -61,14 +61,14 @@ $(document).ready(function(){
 			event.preventDefault();
 			tododel();
 		}
-		
+
 		else if( (event.keyCode == '38' || event.keyCode == '40') && $('.todoedit').length !=0 ) //disable arrow keys for shifting focus during edit time
 		{
 			$('.withfocus').removeClass('withfocus').addClass('withoutfocus');
 			$('.todoedit').parent().parent().removeClass('withoutfocus').addClass('withfocus');
 		}
 		else if(event.keyCode == '27' && ('.todoedit').length != 0 )
-		{	
+		{
 			event.preventDefault();
 			todosave();
 			keynavreset(keynavobj,true);
@@ -89,14 +89,14 @@ $(document).ready(function(){
 				todoedit();
 				keynavreset(keynavobj,false);
 		}
-		
+
 		else if( (event.keyCode =='78') && $('.todoedit').length == 0)
 		{
-			event.preventDefault();		
+			event.preventDefault();
 			$('article').append('<div id="overlay" class="overlay"></div>');
 			$('article').append('<div id="modal" class="modal round modalshadow span-24"><h2 class="topround">Todo List</h2><div><input id="context" class="tbround span-8" type="text"></input></div></div></div>');			     $('#context').focus();
 			//launches modal with id context
-		} 
+		}
 	}
 	else
 	{
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			$('#overlay').remove();
 			$('#modal').remove();
 		}
-	}	
+	}
 	});
 
 	$('li.todo').hover(function(e){ /* Disables focus going on to other elements by hovering when something is being edited */
@@ -156,7 +156,7 @@ $(document).ready(function(){
 			saveState();
 			keynavreset(keynavobj,true);
 			/*alert(keynavobj.el.length);*/
-			
+
 		}
 		else
 		{
@@ -166,9 +166,9 @@ $(document).ready(function(){
 	}
 
 	function newtodoList(name){
-	
+
 		//if the todolist does not exist create new one and return true
-		
+
 		var str = '<section class="round shadow span-24"><div class="subheader topround"><h2 class="listheading">'+name+'</h2><h2 class="listdelete">x</h2></div><ul class="todos"><li class="todo round withoutfocus"><div class="todocontent span-20"></div><div class="todocontrols span-1 last"></div></li></ul></section>';
 		$('article').append(str);
 		keynavreset(keynavobj,true);
@@ -176,7 +176,7 @@ $(document).ready(function(){
 /*		$('ul li').keynav('withfocus','withoutfocus');
 		$('ul li:first').removeClass('withoutfocus').addClass('withfocus'); */
 
-		//else throw dialog error and return false	
+		//else throw dialog error and return false
 		return true; //return true if a duplicated todolist does not exist
 	}
 
@@ -190,7 +190,7 @@ $(document).ready(function(){
 	{
 		localStorage['naow'] = $('article').html();
 	}
-	
+
 	function statePresent()
 	{
 		if(localStorage['naow'])
@@ -198,11 +198,11 @@ $(document).ready(function(){
 			return true;
 		}
 		else
-		{	
+		{
 			return false;
-		}	
+		}
 	}
-	
+
 	function getState()
 	{
 		$('article').append(localStorage['naow']);
