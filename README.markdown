@@ -17,7 +17,7 @@ Naow is a simple one page HTML5 todolist manager that uses Html 5 localstorage. 
 	Up and Down arrow keys - select a todo item
 	i or insert - edit selected todo
 	del - delete selected todo item
-	
+
 ###Other features
 
 - Todo lists are sortable
