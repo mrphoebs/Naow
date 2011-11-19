@@ -26,19 +26,19 @@
         key = e.which;
       }
 			switch(key) {
-				case 37: 
+				case 37:
 				  $.keynav.goLeft();
 				  break;
-				case 38: 
+				case 38:
 				  $.keynav.goUp();
 				  break;
-				case 39: 
+				case 39:
 				  $.keynav.goRight();
 				  break;
-				case 40: 
+				case 40:
 				  $.keynav.goDown();
 				  break;
-				case 13: 
+				case 13:
 				  $.keynav.activate();
 				  break;
 			}
@@ -140,9 +140,9 @@
   }
   $.keynav.goLeft = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dy >= 0) && (Math.abs(dx) - dy) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -150,9 +150,9 @@
   }
   $.keynav.goRight = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dy <= 0) && (Math.abs(dx) + dy) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -161,9 +161,9 @@
 
   $.keynav.goUp = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dx >= 0) && (Math.abs(dy) - dx) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -172,9 +172,9 @@
 
   $.keynav.goDown = function () {
 	  var cur = $.keynav.getCurrent();
-	  var quad = $.keynav.quad(cur,function (dx,dy) { 
+	  var quad = $.keynav.quad(cur,function (dx,dy) {
 										if((dx <= 0) && (Math.abs(dy) + dx) <= 0)
-											return true;	
+											return true;
 										else
 											return false;
 								   });
@@ -189,7 +189,7 @@
   /**
    * This function was taken from Stefan's exellent interface plugin
    * http://www.eyecon.ro/interface/
-   * 
+   *
    * I included it in this library's namespace because the functions aren't
    * quite the same.
    */
